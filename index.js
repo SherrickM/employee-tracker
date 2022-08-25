@@ -98,13 +98,50 @@ function addRole() {
       db.insertRole(res).then(()=> start())
      })
 
-  })
+  });
+}
+// Employee Functions
+
+function viewAllEmployee() {
+  db.returnAllEmployee()
+    .then(([data]) => {
+      console.table(data);
+    })
+    .then(() => start());
 }
 
-// function addEmployee(){
 
-// }
+function addEmployee(){
+  inquirer
+  .prompt([{
+    
+      type: "input",
+      message: "Enter employee's first name:",
+      name: "f_name"
+  },
+  {
+      type: "input",
+      message: "Enter employee's last name:",
+      name: "l_name"
+  },
+  {
+      type: "input",
+      message: "Enter the role ID for employee:",
+      name: "role_id"
+  },
+  {
+      type: "input",
+      message: "Enter the Manager ID for the employee:",
+      name: "mgr_id"
 
-start();
+  }])
+  .then((res) => {
+    db.addEmployee(res).then(() => start())
+  });
+};
+
+
+
+start()
 
 // 3 additinal functions view all emp add emp, update emp
