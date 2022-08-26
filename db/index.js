@@ -41,6 +41,10 @@ class Data {
     return this.connection.promise().query("INSERT INTO employee SET ?", employee);
   }
 
+  updateEmployee(empID, roleId){
+    return this.connection.promise().query(" UPDATE employee SET role_id = ? WHERE id = ?", [roleId,empID]);
+  }
+
 
 }
 // Return all emp, update, add emp

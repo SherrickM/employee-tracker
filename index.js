@@ -42,6 +42,7 @@ function start() {
           addEmployee();
           break;
         case "update an employee role":
+          updateEmployee();
           break;
         default:
           process.exit();
@@ -193,10 +194,17 @@ function updateEmployee() {
           choices: roleChoices,
         }
 
-      ])
+      ]).then((res)=> {
+        const emp = res.employee_id
+        const role = res.role_id
+
+        db.updateEmployee(emp,role).then(() => start());
+      
+     
+    })
 
   
-    });
+    })
   });
 }
 
